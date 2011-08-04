@@ -4,7 +4,28 @@ import bitcoin
 from btcdjson import BitcoindJson
 from sqlite3 import dbapi2 as sqlite
 
-btcd = bitcoin.connect_to_remote('eli', 'isthemaster')
+
+if __name__ == "__main__":
+    from argparse import ArgumentParser
+    import sys
+    parser = ArgumentParser(
+        'Bitcoin Evolved - '
+        'A new kind of Bitcoin client to make Bitcoin easy and enjoyable to use')
+    parser.add_argument('-u', '--user', nargs='?', default='',
+                        help='username for bitcoind server (default: empty)')
+    parser.add_argument('-P', '--password', nargs='?', default='',
+                        help='password for bitcoind server (default: empty)')
+    parser.add_argument('-s', '--server', dest='host', nargs='?', default='localhost',
+                        help='bitcoind server host (default: localhost)')
+    parser.add_argument('-p', '--port', nargs='?', type=int, default=8332,
+                        help='bitcoind server port (default: 8332)')
+    parser.add_argument('wsgi_args', nargs='*')
+    args = parser.parse_args()
+    sys.argv[1:] = args.wsgi_args
+else:
+    from argparse import Namespace
+    args = Namespace(user='', password='', host='localhost', port=8332)
+
 
 urls = (
     '/', 'main',
@@ -12,8 +33,17 @@ urls = (
     '/tests', 'testingInterface'
 )
 
-    
-btcJson = BitcoindJson('eli', 'isthemaster')
+
+if args.user or args.host != 'localhost':
+    btcJson = BitcoindJson(**args.__dict__)
+else:
+    from bitcoin.config import read_default_config
+    cfg = read_default_config()
+    btcJson = BitcoindJson(
+        user=cfg.get('rpcuser', ''),
+        password=cfg['rpcpassword'],
+        host='localhost',
+        port=int(cfg.get('rpcport', '8332')))
 
 
 
