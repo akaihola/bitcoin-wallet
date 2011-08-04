@@ -1,4 +1,4 @@
-var sectionSendRecieve = function () {
+var sectionSendReceive = function () {
 	var updateEvery = 1000*60*5,
 		self;
 	
@@ -77,7 +77,7 @@ var sectionSendRecieve = function () {
 	
 	return {
 		type: 'section',
-		name: 'send_recieve',
+		name: 'send_receive',
 		section: '',
 		init: sectionInit,
 		show: function () {},
@@ -160,9 +160,9 @@ var sectionSendRecieve = function () {
 
 if (typeof SafebitUI == 'undefined') {
 	SafebitUI = [];
-	SafebitUI.push(sectionSendRecieve);
+	SafebitUI.push(sectionSendReceive);
 } else {
-	SafebitUI.registerSection(sectionSendRecieve());
+	SafebitUI.registerSection(sectionSendReceive());
 }
 
 

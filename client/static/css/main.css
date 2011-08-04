@@ -132,11 +132,11 @@ body * {
 				background-position: -672px -215px;
 			}
 		
-			.sidemenu nav li.recieve a {
+			.sidemenu nav li.receive a {
 				background-position: -672px -172px;
 			}
-			.sidemenu nav li.recieve a:hover,
-			.sidemenu nav li.recieve.active a {
+			.sidemenu nav li.receive a:hover,
+			.sidemenu nav li.receive.active a {
 				background-position: -672px -252px;
 			}
 			

@@ -156,10 +156,10 @@ header nav ul {
 		header nav .dashboard.active a span {
 			background-position: 1px -126px;
 		}
-		header nav .send_recieve a span {
+		header nav .send_receive a span {
 			background-position: -116px -87px;
 		}
-		header nav .send_recieve.active a span {
+		header nav .send_receive.active a span {
 			background-position: -116px -126px;
 		}
 		header nav .accounts a span {
